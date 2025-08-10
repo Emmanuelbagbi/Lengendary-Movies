@@ -1,8 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseURL = process.env.REACT_APP_API_BASE_URL;
-
+const baseURL = "https://lengendary-movies-39f1.vercel.app/api/v1/";
 
 const publicClient = axios.create({
   baseURL,
