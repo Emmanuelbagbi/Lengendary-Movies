@@ -58,9 +58,10 @@ const signin = async (req, res) => {
       ...user._doc,
       id: user.id
     });
-  } catch {
-    responseHandler.error(res);
-  }
+  } catch (err) {
+  responseHandler.error(res, err);
+}
+
 };
 
 const updatePassword = async (req, res) => {
@@ -78,8 +79,8 @@ const updatePassword = async (req, res) => {
     await user.save();
 
     responseHandler.ok(res);
-  } catch {
-    responseHandler.error(res);
+  } catch (err) {
+    responseHandler.error(res, err);
   }
 };
 
@@ -90,8 +91,8 @@ const getInfo = async (req, res) => {
     if (!user) return responseHandler.notfound(res);
 
     responseHandler.ok(res, user);
-  } catch {
-    responseHandler.error(res);
+  } catch (err) {
+    responseHandler.error(res, err);
   }
 };
 

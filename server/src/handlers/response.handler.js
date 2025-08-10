@@ -1,9 +1,14 @@
 const responseWithData = (res, statusCode, data) => res.status(statusCode).json(data);
 
-const error = (res) => responseWithData(res, 500, {
-  status: 500,
-  message: "Oops! Something worng!"
-});
+const error = (res, err) => {
+  console.error("❌ Backend Error:", err); // Log full error to console
+  return responseWithData(res, 500, {
+    status: 500,
+    message: err?.message || "Oops! Something wrong!",
+    stack: err?.stack // optional: show in frontend too while debugging
+  });
+};
+
 
 const badrequest = (res, message) => responseWithData(res, 400, {
   status: 400,
