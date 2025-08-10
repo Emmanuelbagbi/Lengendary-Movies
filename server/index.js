@@ -1,13 +1,9 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-console.log("MONGODB_URL:", process.env.MONGODB_URL);
-
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import http from "http";
 import mongoose from "mongoose";
+import "dotenv/config";
 import routes from "./src/routes/index.js";
 
 const app = express();
@@ -29,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log(`Server is listening on port ${port}`);
   });
 }).catch((err) => {
-  console.log("Error connecting to MongoDB:", err);
+  console.log({ err });
   process.exit(1);
 });
 
